@@ -52,6 +52,7 @@ class Player(GameSprite):
 
 player1 = Player('rocket.png', 5, 250, 5, 90, 90)
 player2 = Player('rocket2.png', 605, 250, 5, 90, 90)
+ball = GameSprite('ball.png', 350, 250, 5, 45, 45)
 
 
 game = True#переменная game равна true
@@ -80,6 +81,7 @@ while game:#пока game будет True цикл не закончится
 
         player1.reset()#показываем главного героя на экране
         player2.reset()#показываем главного героя на экране
+        ball.reset()
 
     display.update()#обновление содержимого экрана (после каждого действия в цикле while экран отображается заново)
     clock.tick(FPS)#указываем частоту работы цикла while за 1 секунду
