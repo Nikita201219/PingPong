@@ -48,11 +48,11 @@ class Player(GameSprite):
             self.rect.y += self.speed#перемещаем его по иксу на столько сколько равна скорость игрока
         if key_pressed[K_UP] and self.rect.y > 10:#если нажата стрелочка в лево и координаты по иксу больше 0
             self.rect.y -= self.speed#перемещаем его по иксу на столько сколько равна скорость игрока
-        #управление первым спрайтом (то что сверху)
+        #управление первым спрайтом (то что сверху)s
 
 player1 = Player('rocket.png', 5, 250, 5, 90, 90)
 player2 = Player('rocket2.png', 605, 250, 5, 90, 90)
-ball = GameSprite('ball.png', 305, 0, 3, 45, 45)
+ball = GameSprite('ball.png', 330, 240, 3, 45, 45)
 
 game = True#переменная game равна true
 finish = False#переменная finish равна False если она будет равна True то игрок победил
@@ -61,7 +61,8 @@ font.init()#подключение возможности использоват
 font1 = font.SysFont('Arial', 70)#Установить шрифт / Создание объекта Font с параметрами: шрифт - по умолчанию (None самый первый который стоит в системе компьютера) кегль(размер шрифта) - 70
 font2 = font.SysFont('Arial', 30)#Установить шрифт / Создание объекта Font с параметрами: шрифт - по умолчанию (None самый первый который стоит в системе компьютера) кегль(размер шрифта) - 30
 win = font1.render('YOU WIN', True, (255, 215, 0))#создать видимую надпись "YOU WIN" желтого цвета (True/False - сглаживать пиксели текста или нет)
-lose = font1.render('YOU LOSE', True, (255, 0, 0))#render/рендерить - создавать что-то
+lose1 = font2.render('PLAYER 2 LOSE', True, (255, 0, 0))#render/рендерить - создавать что-то
+lose2 = font2.render('PLAYER 1 LOSE', True, (255, 0, 0))#render/рендерить - создавать что-то
 
 ball_x = 3
 ball_y = 3
@@ -90,6 +91,14 @@ while game:#пока game будет True цикл не закончится
 
         if sprite.collide_rect(player1, ball) or sprite.collide_rect(player2, ball):
             ball_x *= -1
+
+        if ball.rect.x >= 650:
+            window.blit(lose1, (250, 250))
+            finish = True
+        
+        if ball.rect.x <= 0:
+            window.blit(lose2, (250, 250))
+            finish = True
 
     display.update()#обновление содержимого экрана (после каждого действия в цикле while экран отображается заново)
     clock.tick(FPS)#указываем частоту работы цикла while за 1 секунду
