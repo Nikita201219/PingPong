@@ -70,9 +70,6 @@ while game:#пока game будет True цикл не закончится
         if e.type == QUIT:#если тип события(e.type) равен нажатие на крестик(QUIT) меняем значение game на false и заканчиваем цикл
             game = False#значение переменной game меняется на False
 
-        if e.type == KEYDOWN:#если кнопка на клавиатуре нажата
-            pass
-
     if finish != True:
         window.blit(background, (0, 0))#помещаем фоновую картинку в начало точки координат
 
