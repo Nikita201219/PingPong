@@ -67,6 +67,9 @@ lose2 = font2.render('PLAYER 1 LOSE', True, (255, 0, 0))#render/рендерит
 ball_x = 3
 ball_y = 3
 
+schet1 = 0
+schet2 = 0
+
 while game:#пока game будет True цикл не закончится
     
     for e in event.get():#для каждого события в списке событий совершаемых пользователем (отслеживаем то что нажимает пользователь)
@@ -75,6 +78,12 @@ while game:#пока game будет True цикл не закончится
 
     if finish != True:
         window.blit(background, (0, 0))#помещаем фоновую картинку в начало точки координат
+
+        schetchik1 = font2.render(str(schet1), True, (0, 255, 0))#render/рендерить - создавать что-то
+        schetchik2 = font2.render(str(schet2), True, (0, 255, 0))#render/рендерить - создавать что-то
+
+        window.blit(schetchik1, (10, 0))
+        window.blit(schetchik2, (675, 0))
 
         player1.update_l()#теперь главный герой может двигаться при нажатии на стрелочки
         player2.update_r()#теперь главный герой может двигаться при нажатии на стрелочки
@@ -93,11 +102,21 @@ while game:#пока game будет True цикл не закончится
             ball_x *= -1
 
         if ball.rect.x >= 650:
-            window.blit(lose1, (250, 250))
-            finish = True
-        
+            schet1 += 1
+            ball.rect.x = 330
+            ball.rect.y = 240
+            
         if ball.rect.x <= 0:
-            window.blit(lose2, (250, 250))
+            schet2 += 1
+            ball.rect.x = 330
+            ball.rect.y = 240
+
+        if schet1 >= 3:
+            window.blit(lose1, (250, 240))
+            finish = True
+
+        if schet2 >= 3:
+            window.blit(lose2, (250, 240))
             finish = True
 
     display.update()#обновление содержимого экрана (после каждого действия в цикле while экран отображается заново)
